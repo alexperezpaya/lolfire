@@ -1,0 +1,14 @@
+{
+  "name": "lolfire",
+  "version": "0.0.1",
+  "description": "League of Legends personal assistant",
+  "dependencies": {
+    "express": "*",
+    "ejs": "*",
+    "mariasql": "*",
+    "async": "*",
+    "redis": "*",
+    "hiredis": "*",
+    "request": "*"
+  }
+}
