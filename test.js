@@ -1,4 +1,4 @@
-var Lollib = require('./lollib.js');
+var Lollib = require('irelia');
 
 var lol = new Lollib({
 	endpoint: 'http://prod.api.pvp.net/api/lol/',

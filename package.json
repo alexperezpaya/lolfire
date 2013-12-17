@@ -9,6 +9,8 @@
     "async": "*",
     "redis": "*",
     "hiredis": "*",
-    "request": "*"
+    "request": "*",
+    "irelia": "*",
+    "webshot": "*"
   }
 }
