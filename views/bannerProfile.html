@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		body{
+			font-family: Helvetica; 
+		}
+	
+		#float {
+			position: absolute;
+			z-index: 10;
+			color: black;
+			background: #f2f2f2;
+			border-radius: 100px;
+		}
+
+		.summoner_icon {
+			z-index: -1;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="float"><h3>BETA</h3></div>
+	<div class="summoner_icon">
+		<img style="border-radius: 60px; width: 120px; height: 120px;" src="<%= route %>/static/icons/<%= summoner.profileIconId %>.jpg" />
+	</div>
+
+	<div class="summoner_info">
+		<span id="summoner_name"><%= summoner.name%></span>
+		<span id="summoner_region"><%= region %></span>
+		<span id="summoner_level">Level: <%= summoner.summonerLevel %></span>
+	</div>
+
+</body>
+</html>

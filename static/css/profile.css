@@ -1,0 +1,13 @@
+body{
+	font-family: Helvetica;
+	background-color: #ED5C56;
+};
+
+.icon {
+	border-radius: 60px;
+    -moz-border-radius: 60px;
+    -khtml-border-radius: 60px;
+    -webkit-border-radius: 60px;
+    width: 120px;
+    height: 120px;
+}
