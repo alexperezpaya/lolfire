@@ -10,8 +10,8 @@ var webshot = require('webshot');
 // var redis = require('rediswrapper');
 
 var port = 80;
-var domain = 'lolfire.com';
-var route = 'http://' + domain + ':' + port;
+/*var domain = 'lolfire.com';
+var route = 'http://' + domain + ':' + port;*/
 
 // Initialization
 
@@ -64,8 +64,7 @@ app.get('/image/banner/:region/:summoner', function (req, res){
 		webshot(render.bannerProfile({
 			stats: stats,
 			summoner: summoner,
-			region: lol.regions[req.params.region],
-			route: route
+			region: lol.regions[req.params.region]
 		}), {
 			siteType:'html',
 			screenSize: {
@@ -126,8 +125,7 @@ app.get('/frame/banner/:region/:summoner', function (req, res){
 		var code = render.bannerProfile({
 			stats: stats,
 			summoner: summoner,
-			region: lol.regions[req.params.region],
-			route: route
+			region: lol.regions[req.params.region]
 		});
 
 		res.send(code);
