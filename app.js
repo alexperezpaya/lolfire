@@ -33,59 +33,24 @@ app.get('/', function (req, res){
 
 app.get('/image/banner/:region/:summoner', function (req, res){
 
-	async.waterfall([
-
-		function (callback){
-			
-			// Get id from redis cache :P if no search it and add it
-
-			lol.getSummonerByName(req.params.region, req.params.summoner, function (err, summoner){
-
-				callback(err, summoner);
-
-			});
-		}, function (summoner, callback){
-			lol.getSummaryStatsBySummonerId(req.params.region, summoner.id, function (err, stats){
-
-				callback(err, stats, summoner);
-
-			});
+	webshot('http://localhost/frame/banner/euw/nszombie', {
+		screenSize: {
+			width: 960,
+			height: 240
 		}
 
-	], function (err, stats, summoner){
-
+	}, function(err, stream) {
+		
 		if(err){
 			console.log(err);
-			throw err;
 		}
 
-		// USE EJS TO RENDER SHOT WITH PARAMETERS;
+		stream.on('data', function(data) {
+			res.write(data);
+		});
 
-		webshot(render.bannerProfile({
-			stats: stats,
-			summoner: summoner,
-			region: lol.regions[req.params.region]
-		}), {
-			siteType:'html',
-			screenSize: {
-				width: 960,
-				height: 240
-			}
-
-		}, function(err, stream) {
-			
-			if(err){
-				console.log(err);
-			}
-
-			stream.on('data', function(data) {
-				res.write(data);
-			});
-
-			stream.on('end', function (){
-				res.end();
-			});
-
+		stream.on('end', function (){
+			res.end();
 		});
 
 	});
