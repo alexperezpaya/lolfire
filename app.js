@@ -33,7 +33,7 @@ app.get('/', function (req, res){
 
 app.get('/image/banner/:region/:summoner', function (req, res){
 
-	webshot('http://localhost/frame/banner/euw/nszombie', {
+	webshot('http://localhost/frame/banner/'+req.params.region+'/'+req.params.summoner, {
 		screenSize: {
 			width: 960,
 			height: 240
