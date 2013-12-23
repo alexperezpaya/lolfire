@@ -46,15 +46,21 @@ app.get('/image/banner/:region/:summoner', function (req, res){
 		
 		if(err){
 			console.log(err);
+			res.send(err);
+		} else{
+
+			res.writeHead(200, {
+			  'Content-Type': 'image/png'
+			});
+
+			stream.on('data', function(data) {
+				res.write(data);
+			});
+
+			stream.on('end', function (){
+				res.end();
+			});
 		}
-
-		stream.on('data', function(data) {
-			res.write(data);
-		});
-
-		stream.on('end', function (){
-			res.end();
-		});
 
 	});
 

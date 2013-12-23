@@ -5,34 +5,132 @@
 	<style>
 
 		body{
-			font-family: Arial; 
+			font-family: Arial;
+			vertical-align: middle;
+			background-color: #2c4350;
+			color: white;
+		}
+
+		wins{
+			color: #22ff20;
+		}
+
+		defeats {
+			color: red;
+		}
+
+		level {
+			color: #1382f6;
 		}
 	
 		#beta {
 			position: absolute;
 			z-index: 10;
-			color: black;
-			background: #f2f2f2;
-			border-radius: 100px;
+			top: 0;
+			left: 35px;
+			color: white;
+			/*background: #f2f2f2;*/
+			/*border-radius: 100px;*/
 		}
 
-		.summoner_icon {
+		.summoner_info {
+			text-align: center;
+		}
+
+		.summoner_info > #name {
+			font-size: 30pt;
+		}
+
+		.summoner_info > #region {
+			color: #22faea;
+		}
+
+		.summoner_info > #level {
+			font-size: 16pt;
+		}
+
+		.ranked_info {
+			text-align: center;
+		}
+
+		.ranked_info > #league {
+			font-style: italic;
+			font-size: 20px;
+			color: yellow;
+		}
+
+		.ranked_info > #wins {
+			font-size: 20px;
+		}
+
+		.ranked_info > #division {
+			position: absolute;
+			font-size: 40px;
+			color: white;
+			bottom: 40px;
+			right: 55px;
+		}
+
+		#league_icon {
+			position: absolute;
+			right: 15px;
+			top: 15px;
+			z-index: 1;
+		}
+
+		#summoner_icon {
 			z-index: -1;
 		}
 
 	</style>
 </head>
 <body>
+	
+	<!-- BETA BADGE -->
+
 	<div id="beta"><h3>BETA</h3></div>
-	<div class="summoner_icon">
-		<img style="border-radius: 60px; width: 120px; height: 120px;" src="http://localhost/static/icons/<%= summoner.profileIconId %>.jpg" />
+	
+	<!-- BETA BADGE END -->
+
+	<!-- SUMMONER INFO -->
+	
+	<div id="summoner_icon">
+		<img style="position: absolute; width: 130px; height: 130px; left:35px; top: 55px;" src="http://localhost/static/icons/<%= summoner.profileIconId %>.jpg" />
 	</div>
+	
+	<br>
+	<br>
 
 	<div class="summoner_info">
-		<span id="summoner_name"><%= summoner.name%></span>
-		<span id="summoner_region"><%= region %></span>
-		<span id="summoner_level">Level: <%= summoner.summonerLevel %></span>
+		<span id="name"><%= summoner.name%></span><br>
+		<span id="region"><%= region %></span><br>
+		<span id="level">Level: <level><%= summoner.summonerLevel %></level></span><br>
 	</div>
+
+	<!-- RANKED INFO -->
+
+	<% if(ranked_stats && ranked_stats.name){ %>
+		<div class="ranked_info">
+			<span id="league"><%= ranked_stats.name %></span><br>
+			<span id="wins">Ranked wins: <wins><%= ranked_stats.data.wins%></wins></span><br>
+			<span id="division"><%= ranked_stats.data.rank %></span>
+			<span id="league_icon">
+				<img src="http://localhost/static/leagues/<%= ranked_stats.data.tier.toLowerCase() %>_<%= ranked_stats.data.numRank %>.png">
+			</span>
+		</div>
+
+	<!-- UNRANKED FILL INFO -->
+
+	<% } else { %>
+		<div class="ranked_info">
+			<span id="league">Unranked</span><br>
+			<span id="wins">Ranked Wins: <wins>0</wins></span><br>
+			<span id="league_icon">
+				<img src="http://localhost/static/leagues/unknown.png">
+			</span>
+		</div>
+	<% } %>
+
 
 </body>
 </html>

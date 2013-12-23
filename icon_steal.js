@@ -7,7 +7,7 @@ var fs = require('fs');
 var path = require('path');
 var request = require('request');
 
-async.timesSeries(604, function (n, callback){
+async.timesSeries(603, function (n, callback){
 
 	var imageStream = request.get('http://lkimg.zamimg.com/shared/riot/images/profile_icons/profileIcon'+n+'.jpg');
 	var writeStream = fs.createWriteStream(path.normalize(__dirname + '/static/icons/'+n+'.jpg'));
