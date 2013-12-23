@@ -82,6 +82,11 @@
 			z-index: -1;
 		}
 
+		#copyright {
+			text-align: center;
+			font-size: 20px;
+		}
+
 	</style>
 </head>
 <body>
@@ -116,7 +121,8 @@
 			<span id="division"><%= ranked_stats.data.rank %></span>
 			<span id="league_icon">
 				<img src="http://localhost/static/leagues/<%= ranked_stats.data.tier.toLowerCase() %>_<%= ranked_stats.data.numRank %>.png">
-			</span>
+			</span><br>
+			<span id="copyright">lolfire.com ©</span>
 		</div>
 
 	<!-- UNRANKED FILL INFO -->
@@ -127,9 +133,11 @@
 			<span id="wins">Ranked Wins: <wins>0</wins></span><br>
 			<span id="league_icon">
 				<img src="http://localhost/static/leagues/unknown.png">
-			</span>
+			</span><br>
+			<span id="copyright">lolfire.com ©</span>
 		</div>
 	<% } %>
+
 
 
 </body>
