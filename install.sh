@@ -5,4 +5,4 @@ nvm use 0.10
 nvm alias default 0.10
 npm install forever
 apt-get update
-apt-get install -y git redis
+apt-get install -y git redis-server typecatcher
