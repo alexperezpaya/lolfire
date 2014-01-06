@@ -3,9 +3,15 @@
 
 var async = require('async');
 var express = require('express');
-var Lollib = require('irelia');
-var webshot = require('webshot');
 var frame = require(__dirname + '/lib/frame');
+var Lollib = require('irelia');
+global.models = require(__dirname + '/lib/models');
+var mongoose = require('mongoose');
+var web = require(__dirname + '/lib/web');
+var webshot = require('webshot');
+
+// Config
+
 var config = require(__dirname + '/config.json');
 
 // Global modules
@@ -16,21 +22,59 @@ require(__dirname + '/lib/redis');
 
 var app = express();
 
+mongoose.connect('mongodb://' + config.mongo.host + '/' + config.mongo.database, {
+	user: config.mongo.user,
+	pass: config.mongo.pass,
+	server: {
+		socketOptions: {
+			keepAlive: 1
+		}
+	},
+	replset: {
+		socketOptions: {
+			keepAlive: 1
+		}
+	}
+});
+
+mongoose.model('Summoner', models.summoner);
+
+
+// App Config
+
+// Static Settings
+
+app.use('/static', express.static('static'));
+
+// View Engine Settings
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+app.engine('.html', require('ejs').renderFile);
+
+
+// Module init
+
 global.lol = new Lollib({
 	endpoint: 'http://prod.api.pvp.net/api/lol/',
 	key: config.api.beta_key,
 	debug: config.debug
 });
 
-app.use('/static', express.static('static'));
 
 // App router
 
 // Modularize each function
 
 app.get('/', function (req, res){
-	res.redirect('/image/banner/euw/nszombie');
+	res.render('index.html');
 });
+
+app.get('/search', function (req, res){
+	res.redirect('/image/banner/'+req.query.region + '/' + req.query.summoner);
+});
+
+app.get('/summoner/:region/:summoner', web.summoner);
 
 app.get('/frame/banner/:region/:summoner', frame.summoner);
 

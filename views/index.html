@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lolfire</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+</head>
+<body>
+	
+	<div class="header">
+		<p id="name">Lolfire</p>
+		<p id="slogan">Fire your League of Legends skills</p>
+	</div>
+	
+	<div id="advice">
+		Type your summoner name to get an url to your banner image. Show in webpages, forums, etc that you are the best summoner!
+	</div>
+	
+	<div class="search">
+		
+		<form action="/search", method="get">
+
+			<div class="select_container">
+				<select name="region" id="region">
+					<option value="euw">EUW</option>
+					<option value="eune">EUNE</option>
+					<option value="na">NA</option>
+				</select>
+			</div>
+			
+			<div class="search_box">
+				<input id="search_field" type="search" name="summoner" placeholder="Enter a summoner playing in this region" required>
+				<input id="search_buttom" type="submit" value="Search">
+			</div>
+
+		</form>
+
+	</div>
+
+</body>
+</html>
