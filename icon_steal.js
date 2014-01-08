@@ -45,3 +45,5 @@ async.timesSeries(603, function (n, callback){
 		console.log(err);
 	}
 });
+
+// http://lkimg.zamimg.com/shared/riot/images/champions/75.png -> champions
