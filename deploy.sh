@@ -1,9 +1,9 @@
 #! /bin/sh
 echo "**** Stopping server"
-npm stop
+forever stop app.js
 echo "**** Updating dependiences"
 npm update
 echo "**** Starting server"
-npm start
+forever start app.js
 
 echo "**** Up and running yo"
