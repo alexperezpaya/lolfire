@@ -16,6 +16,7 @@
   "scripts": {
     "start": "forever start app.js",
     "stop": "forever stop app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "redis" "echo a"
   }
 }
