@@ -10,4 +10,4 @@ apt-get update
 apt-get install nodejs
 npm install forever
 apt-get update
-apt-get install -y git redis-server typecatcher
+apt-get install -y git redis-server typecatcher mongodb

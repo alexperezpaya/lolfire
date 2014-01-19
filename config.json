@@ -9,8 +9,8 @@
 	
 	"mongo": {
 		"host": "localhost",
-		"user": "deploy",
-		"pass": "lastetasdesona",
+		"user": "",
+		"pass": "",
 		"database": "lolfire"
 	}
 

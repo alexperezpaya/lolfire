@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-bar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><img height="20px" src="/static/images/logo_white.png"></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="nav-bar-collapse">
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+    </ul>
+    <div class="navbar-right">
+      <form class="navbar-form" role="search" action="/search", method="get">          
+        <div class="form-group">
+          <select name="region" class="form-control btn-default">
+            <option value="euw">EUW</option>
+            <option value="eune">EUNE</option>
+            <option value="na">NA</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="search" name="summoner" placeholder="Summoner name" required>
+        </div>
+        <button type="submit" class="btn btn-default">Search <span class="glyphicon glyphicon-search"></span></button>
+      </form>
+    </div>
+    <!-- <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p> -->
+  </div><!-- /.navbar-collapse -->
+
+</nav>
+<div class="text-center"><h1 style="color: red;">Beta</h1></div>
