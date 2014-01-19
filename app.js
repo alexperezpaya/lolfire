@@ -61,13 +61,26 @@ global.lol = new Lollib({
 	debug: config.debug
 });
 
+var updateChampions = function (){
+
+	lol.getChampions('euw', true, function (err, champions){
+		console.log('Updated free champions at:' + Date.now());
+		global.freetoplay = champions.champions;
+	});
+
+}
+
+updateChampions();
+setInterval(updateChampions, 900000);
 
 // App router
 
 // Modularize each function
 
 app.get('/', function (req, res){
-	res.render('index.html');
+	res.render('index.html', {
+		freetoplay: freetoplay
+	});
 });
 
 app.get('/search', function (req, res){

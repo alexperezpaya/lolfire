@@ -1,6 +1,7 @@
 // LOLKING STEAL ICONS SCRIPT BIATCH
 
 //http://lkimg.zamimg.com/shared/riot/images/profile_icons/profileIcon602.jpg Endpoint
+// http://lkimg.zamimg.com/shared/riot/images/champions/254.png
 
 var async = require('async');
 var fs = require('fs');
@@ -9,8 +10,8 @@ var request = require('request');
 
 async.timesSeries(603, function (n, callback){
 
-	var imageStream = request.get('http://lkimg.zamimg.com/shared/riot/images/profile_icons/profileIcon'+n+'.jpg');
-	var writeStream = fs.createWriteStream(path.normalize(__dirname + '/static/icons/'+n+'.jpg'));
+	var imageStream = request.get('http://lkimg.zamimg.com/shared/riot/images/champions/'+n+'.png');
+	var writeStream = fs.createWriteStream(path.normalize(__dirname + '/static/champions/'+n+'.png'));
 	imageStream.pipe(writeStream);
 	
 	writeStream.on('finish', function (){

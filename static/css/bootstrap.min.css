@@ -10,3 +10,7 @@
 select {-webkit-appearance: none;}
 .search_container {vertical-align: middle; padding-top: 100px;}
 .search_summoner {padding-top: 15px;}
+.freetoplay {
+	padding-top: 30px;
+	text-align: center;
+}
