@@ -18,3 +18,12 @@ select {-webkit-appearance: none;}
 .padded-top {
 	padding-top: 10px;
 }
+
+.center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.banner-url {
+	width: 200px;
+}
