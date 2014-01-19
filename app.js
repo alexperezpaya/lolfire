@@ -63,9 +63,14 @@ global.lol = new Lollib({
 
 var updateChampions = function (){
 
+	console.log('Updated champions at: ' + Date.now());
+
 	lol.getChampions('euw', true, function (err, champions){
-		console.log('Updated free champions at:' + Date.now());
 		global.freetoplay = champions.champions;
+	});
+
+	lol.getChampions('euw', false, function (err, champions){
+		global.champions = champions.champions;
 	});
 
 }
