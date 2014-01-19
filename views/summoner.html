@@ -1,58 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title><%= summoner.name %></title>
-	<link rel="stylesheet" href="/css/summoner.css">
+<% title = summoner.name %>
+<% include header.html %>
+
 </head>
+
 <body>
 	
-	<!-- BETA BADGE -->
-
-	<div id="beta"><h3>BETA</h3></div>
+	<% active = 'summoner' %>
+	<% include navbar.html %>
 	
-	<!-- BETA BADGE END -->
+	<div class="container text-center">
+		
+		<img class="" src="/image/banner/euw/<%= summoner.name %>" />
 
-	<!-- SUMMONER INFO -->
-	
-	<div id="summoner_icon">
-		<img src="/static/icons/<%= summoner.profileIconId %>.jpg" />
 	</div>
-	
-	<br>
-	<br>
-
-	<div class="summoner_info">
-		<span id="name"><%= summoner.name%></span><br>
-		<span id="region"><%= region %></span><br>
-		<span id="level">Level: <level><%= summoner.summonerLevel %></level></span><br>
-	</div>
-
-	<!-- RANKED INFO -->
-
-	<% if(ranked_stats && ranked_stats.name){ %>
-		<div class="ranked_info">
-			<span id="league"><%= ranked_stats.name %></span><br>
-			<span id="wins">Ranked wins: <wins><%= ranked_stats.data.wins%></wins></span><br>
-			<span id="division"><%= ranked_stats.data.rank %></span>
-			<span id="league_icon">
-				<img src="/static/leagues/<%= ranked_stats.data.tier.toLowerCase() %>_<%= ranked_stats.data.numRank %>.png">
-			</span><br>
-			<span id="copyright">lolfire.com ©</span>
-		</div>
-
-	<!-- UNRANKED FILL INFO -->
-
-	<% } else { %>
-		<div class="ranked_info">
-			<span id="league">Unranked</span><br>
-			<span id="wins">Ranked Wins: <wins>0</wins></span><br>
-			<span id="league_icon">
-				<img src="/static/leagues/unknown.png">
-			</span><br>
-			<span id="copyright">lolfire.com ©</span>
-		</div>
-	<% } %>
 
 
 
