@@ -130,4 +130,8 @@ app.get('/image/banner/:region/:summoner', function (req, res){
 
 });
 
+app.get('/riot.html', function (req, res){
+	res.send('4eda04e1-bcb8-4ef8-87d7-7ec9f28018a8');
+});
+
 app.listen(config.port);
