@@ -87,6 +87,8 @@ app.get('/search', function (req, res){
 	res.redirect('/image/banner/'+req.query.region + '/' + req.query.summoner);
 });
 
+app.get('/champions', web.champions);
+
 app.get('/summoner/:region/:summoner', web.summoner);
 
 app.get('/frame/banner/:region/:summoner', frame.summoner);

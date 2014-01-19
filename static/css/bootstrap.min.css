@@ -14,3 +14,7 @@ select {-webkit-appearance: none;}
 	padding-top: 30px;
 	text-align: center;
 }
+
+.padded-top {
+	padding-top: 10px;
+}
