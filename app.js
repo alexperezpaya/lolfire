@@ -1,3 +1,29 @@
+// JS CORE Prototype mod
+
+Array.prototype.compare = function (array) {
+    // if the other array is a falsy value, return
+    if (!array)
+        return false;
+
+    // compare lengths - can save a lot of time
+    if (this.length != array.length)
+        return false;
+
+    for (var i = 0, l=this.length; i < l; i++) {
+        // Check if we have nested arrays
+        if (this[i] instanceof Array && array[i] instanceof Array) {
+            // recurse into the nested arrays
+            if (!this[i].compare(array[i]))
+                return false;
+        }
+        else if (this[i] != array[i]) {
+            // Warning - two different object instances will never be equal: {x:20} != {x:20}
+            return false;
+        }
+    }
+    return true;
+};
+
 
 // Modules
 
@@ -5,8 +31,6 @@ var async = require('async');
 var express = require('express');
 var frame = require(__dirname + '/lib/frame');
 var Lollib = require('irelia');
-global.models = require(__dirname + '/lib/models');
-var mongoose = require('mongoose');
 var web = require(__dirname + '/lib/web');
 var webshot = require('webshot');
 
@@ -18,27 +42,7 @@ var config = require(__dirname + '/config.json');
 
 require(__dirname + '/lib/redis');
 
-// var redis = require('rediswrapper');
-
 var app = express();
-
-mongoose.connect('mongodb://' + config.mongo.host + '/' + config.mongo.database, {
-	user: config.mongo.user,
-	pass: config.mongo.pass,
-	server: {
-		socketOptions: {
-			keepAlive: 1
-		}
-	},
-	replset: {
-		socketOptions: {
-			keepAlive: 1
-		}
-	}
-});
-
-mongoose.model('Summoner', models.summoner);
-
 
 // App Config
 
@@ -66,7 +70,18 @@ var updateChampions = function (){
 	console.log('Updated champions at: ' + Date.now());
 
 	lol.getChampions('euw', true, function (err, champions){
-		global.freetoplay = champions.champions;
+		if(err){
+			console.log('Champions updater err: ' + err);
+		} else {
+			if(typeof freetoplay !== 'undefined' && typeof champions !== 'undefined' && freetoplay !== champions.champions){
+					
+				console.log('Changed.', champions.champions);
+
+			}
+
+			global.freetoplay = champions.champions;
+		}
+
 	});
 
 	lol.getChampions('euw', false, function (err, champions){
