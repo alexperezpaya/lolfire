@@ -48,9 +48,9 @@ function timeAgo(time, local){
 	
 	<div class="container text-center">
 		
-		<img class="center img-responsive" src="/image/banner/euw/<%= summoner.name %>" />
+		<img class="center img-responsive" src="/image/banner/<%= region_short %>/<%= summoner.name %>" />
 		<div class="banner-url center">
-			<label for="banner-url">Image URL</label><input id="banner-url" type="text" value="http://lolfire.com/image/banner/euw/<%= summoner.name %>" class="form-control" onclick="this.select();" readonly="readonly">
+			<label for="banner-url">Image URL</label><input id="banner-url" type="text" value="http://lolfire.com/image/banner/<%= region_short %>/<%= summoner.name %>" class="form-control" onclick="this.select();" readonly="readonly">
 		</div>
 
 	</div>
@@ -79,11 +79,11 @@ function timeAgo(time, local){
 				<td><img src="/static/champions/<%= game.championId %>_32.png" alt=""></td>
 				<td><img width="32" src="http://lkimg.zamimg.com/images/spells/<%= game.spell1%>.png" alt=""><img width="32" src="http://lkimg.zamimg.com/images/spells/<%= game.spell2%>.png" alt=""></td>
 				<td><% if(game.stats.item0){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item0 %>_32.png" alt=""> <% } %><% if(game.stats.item1){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item1 %>_32.png" alt=""> <% } %><% if(game.stats.item2){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item2 %>_32.png" alt=""> <% } %><% if(game.stats.item3){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item3 %>_32.png" alt=""> <% } %><% if(game.stats.item4){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item4 %>_32.png" alt=""> <% } %><% if(game.stats.item5){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item5 %>_32.png" alt=""> <% } %><% if(game.stats.item6){ %> <img src="http://lkimg.zamimg.com/shared/riot/images/items/<%= game.stats.item6 %>_32.png" alt=""> <% } %></td>
-				<td><%= game.stats.championsKilled %></td>
-				<td><%= game.stats.numDeaths %></td>
-				<td><%= game.stats.assists %></td>
-				<td><%= game.stats.goldEarned %></td>
-				<td><%= game.stats.minionsKilled %></td>
+				<td><%= (game.stats.championsKilled) ? game.stats.championsKilled : 0 %></td>
+				<td><%= (game.stats.numDeaths) ? game.stats.numDeaths : 0 %></td>
+				<td><%= (game.stats.assists) ? game.stats.assists : 0 %></td>
+				<td><%= (game.stats.goldEarned) ? game.stats.goldEarned : 0 %></td>
+				<td><%= (game.stats.minionsKilled) ? game.stats.minionsKilled : 0 %></td>
 				<td><%= timeAgo(game.createDate) %></td>
 				<td><%= gamemode[game.gameMode] %></td>
 				<td><%= gamesubtype[game.subType] %></td>
