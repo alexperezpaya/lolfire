@@ -60,23 +60,22 @@ app.engine('.html', require('ejs').renderFile);
 // Module init
 
 global.lol = new Lollib({
-	endpoint: 'http://prod.api.pvp.net/api/lol/',
-	key: config.api.beta_key,
+	host: 'prod.api.pvp.net',
+	path: '/api/lol/',
+	secure: true,
+	key: config.api.prod_key || config.api.beta_key,
 	debug: config.debug
 });
 
 var updateChampions = function (){
 
-	console.log('Updated champions at: ' + Date.now());
-
 	lol.getChampions('euw', true, function (err, champions){
+
 		if(err){
 			console.log('Champions updater err: ' + err);
-		} else {
+		} else if(champions) {
 			if(typeof freetoplay !== 'undefined' && typeof champions !== 'undefined' && freetoplay !== champions.champions){
-					
-				console.log('Changed.', champions.champions);
-
+				console.log('Updated champions at: ' + Date.now());
 			}
 
 			global.freetoplay = champions.champions;
@@ -85,7 +84,11 @@ var updateChampions = function (){
 	});
 
 	lol.getChampions('euw', false, function (err, champions){
-		global.champions = champions.champions;
+		if(err){
+			console.log(err);
+		} else if(typeof champions !== 'undefined'){
+			global.champions = champions.champions;
+		}
 	});
 
 }
@@ -104,7 +107,7 @@ app.get('/', function (req, res){
 });
 
 app.get('/search', function (req, res){
-	res.redirect('/summoner/'+req.query.region + '/' + req.query.summoner);
+	res.redirect('/summoner/' + req.query.region + '/' + req.query.summoner);
 });
 
 app.get('/champions', web.champions);
@@ -122,7 +125,7 @@ app.get('/image/banner/:region/:summoner', function (req, res){
 		}
 
 	}, function(err, stream) {
-		
+
 		if(err){
 			console.log(err);
 			res.send(err);

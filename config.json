@@ -1,7 +1,8 @@
 {
 
 	"api": {
-		"beta_key": "94f44207-a683-4b27-a7da-790a3ef66c6c"
+		"beta_key": "94f44207-a683-4b27-a7da-790a3ef66c6c",
+		"prod_key": "351ca024-3c39-4df4-bf2b-23184cb53a08"
 	},
 	
 	"port": 80,
